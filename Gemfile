@@ -18,6 +18,9 @@ end
 
 group :test do
   gem 'cucumber-rails', git: 'https://github.com/cucumber/cucumber-rails.git'
+  gem 'spork'
+  gem 'autotest'
+  gem 'test_notifier'
 end
 
 gem 'jquery-rails'
