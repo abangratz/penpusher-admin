@@ -20,12 +20,13 @@ group :development, :test do
   gem 'capybara'
   gem 'pry-rails'
   gem 'spork'
+  gem 'autotest-rails'
   gem 'autotest'
   gem 'test_notifier'
 end
 
 group :test do
-  gem 'cucumber-rails', git: 'https://github.com/cucumber/cucumber-rails.git'
+  gem 'cucumber-rails', git: 'https://github.com/cucumber/cucumber-rails.git', require: false
 end
 
 gem 'jquery-rails'
