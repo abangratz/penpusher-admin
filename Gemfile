@@ -12,15 +12,20 @@ end
 
 group :development, :test do
   gem 'rspec-rails', git: 'https://github.com/rspec/rspec-rails'
+  gem "rspec",              git: "git://github.com/rspec/rspec.git"
+  gem "rspec-core",         git: "git://github.com/rspec/rspec-core.git"
+  gem "rspec-expectations", git: "git://github.com/rspec/rspec-expectations.git"
+  gem "rspec-mocks",        git: "git://github.com/rspec/rspec-mocks.git"
+
   gem 'capybara'
   gem 'pry-rails'
+  gem 'spork'
+  gem 'autotest'
+  gem 'test_notifier'
 end
 
 group :test do
   gem 'cucumber-rails', git: 'https://github.com/cucumber/cucumber-rails.git'
-  gem 'spork'
-  gem 'autotest'
-  gem 'test_notifier'
 end
 
 gem 'jquery-rails'
