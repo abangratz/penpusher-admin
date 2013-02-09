@@ -1,4 +1,32 @@
 GIT
+  remote: git://github.com/rspec/rspec-core.git
+  revision: 9f8983f2b2e11ad71f02475683e5ed1f6e5be60f
+  specs:
+    rspec-core (2.12.2)
+
+GIT
+  remote: git://github.com/rspec/rspec-expectations.git
+  revision: fc4b66dc16b0394ca9d6f63a93296b035052c485
+  specs:
+    rspec-expectations (2.12.1)
+      diff-lcs (>= 1.1.3)
+
+GIT
+  remote: git://github.com/rspec/rspec-mocks.git
+  revision: c45405812fd12e885dbe451b312ce546b2851ca4
+  specs:
+    rspec-mocks (2.12.2)
+
+GIT
+  remote: git://github.com/rspec/rspec.git
+  revision: b8e9f832cc56966ff48c47d5ec1f918c38986380
+  specs:
+    rspec (2.12.0)
+      rspec-core (~> 2.12.0)
+      rspec-expectations (~> 2.12.0)
+      rspec-mocks (~> 2.12.0)
+
+GIT
   remote: https://github.com/cucumber/cucumber-rails.git
   revision: a89475f53ee5d5407532cf8631477645b3524e3b
   specs:
@@ -9,7 +37,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-rails
-  revision: b5e9963ff22c976a832eaf636bb0825bd57a0284
+  revision: 1d7f8f79afc389f569be6edee07a47d7f786f253
   specs:
     rspec-rails (2.12.0)
       actionpack (>= 3.0)
@@ -22,7 +50,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    ZenTest (4.8.4)
+    ZenTest (4.9.0)
     actionmailer (3.2.11)
       actionpack (= 3.2.11)
       mail (~> 2.4.4)
@@ -53,8 +81,10 @@ GEM
     arel (3.0.2)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
+    autotest-rails (4.1.2)
+      ZenTest (~> 4.5)
     builder (3.0.4)
-    capistrano (2.14.1)
+    capistrano (2.14.2)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
@@ -75,7 +105,7 @@ GEM
       diff-lcs (>= 1.1.3)
       gherkin (~> 2.11.0)
       json (>= 1.4.6)
-    diff-lcs (1.1.3)
+    diff-lcs (1.2.0)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -92,7 +122,7 @@ GEM
     hike (1.2.1)
     i18n (0.6.1)
     journey (1.0.4)
-    jquery-rails (2.2.0)
+    jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.7.6)
@@ -103,15 +133,15 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     method_source (0.8.1)
-    mime-types (1.19)
+    mime-types (1.20.1)
     multi_json (1.5.0)
-    net-scp (1.0.4)
-      net-ssh (>= 1.99.1)
-    net-sftp (2.0.5)
-      net-ssh (>= 2.0.9)
-    net-ssh (2.6.3)
-    net-ssh-gateway (1.1.0)
-      net-ssh (>= 1.99.1)
+    net-scp (1.1.0)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.6.5)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     nokogiri (1.5.6)
     notifier (0.4.1)
     polyglot (0.3.3)
@@ -121,7 +151,7 @@ GEM
       slop (~> 3.4)
     pry-rails (0.2.2)
       pry (>= 0.9.10)
-    rack (1.4.4)
+    rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
     rack-ssl (1.3.3)
@@ -145,13 +175,9 @@ GEM
       thor (>= 0.14.6, < 2.0)
     raindrops (0.10.0)
     rake (10.0.3)
-    rdoc (3.12)
+    rdoc (3.12.1)
       json (~> 1.4)
     ref (1.0.2)
-    rspec-core (2.12.2)
-    rspec-expectations (2.12.1)
-      diff-lcs (~> 1.1.3)
-    rspec-mocks (2.12.2)
     rubyzip (0.9.9)
     sass (3.2.5)
     sass-rails (3.2.6)
@@ -184,7 +210,7 @@ GEM
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    unicorn (4.5.0)
+    unicorn (4.6.0)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
@@ -197,6 +223,7 @@ PLATFORMS
 
 DEPENDENCIES
   autotest
+  autotest-rails
   capistrano
   capybara
   cucumber-rails!
@@ -204,6 +231,10 @@ DEPENDENCIES
   jquery-rails
   pry-rails
   rails (= 3.2.11)
+  rspec!
+  rspec-core!
+  rspec-expectations!
+  rspec-mocks!
   rspec-rails!
   sass-rails (~> 3.2.3)
   spork

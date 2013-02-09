@@ -1,0 +1,12 @@
+Autotest.add_hook(:initialize) do |at|
+  %w{.git .bundle tmp .*.swp ._* }.each do |exception|
+    at.add_exception(exception)
+  end
+
+  at.add_mapping(%r{^lib/.*\.rb$}) {|f, _|
+    Dir['spec/**/*.rb']
+  }
+  nil
+end
+
+# vim:ft=ruby
