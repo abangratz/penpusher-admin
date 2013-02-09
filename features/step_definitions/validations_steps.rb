@@ -1,3 +1,3 @@
-Then /^I should see "(.*?)"$/ do |arg1|
-  page.should have_content("Hi")
+Then /^I should see "(.*?)"$/ do |text|
+  page.should have_content(text)
 end

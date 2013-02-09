@@ -8,5 +8,5 @@ Feature: Administrating the blog
 			|title		| body					|
 			|Test		| First!!11!!!eleventy	|
 		When I visit the "/articles" page
-		Then I want to see "Test"
-		And I want to see "First!!11!!!eleventy"
+		Then I should see "Test"
+		And I should see "First!!11!!!eleventy"
