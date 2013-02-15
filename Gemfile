@@ -26,6 +26,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'binding_of_caller'
+  gem 'better_errors'
   gem 'pry-debugger'#, :require => false
   gem 'pry-exception_explorer'#, :require => false
   gem 'pry-remote'#, :require => false

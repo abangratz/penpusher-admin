@@ -83,6 +83,9 @@ GEM
       ZenTest (>= 4.4.1)
     autotest-rails (4.1.2)
       ZenTest (~> 4.5)
+    better_errors (0.6.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
     binding_of_caller (0.6.8)
     builder (3.0.4)
     capistrano (2.14.2)
@@ -244,6 +247,8 @@ PLATFORMS
 DEPENDENCIES
   autotest
   autotest-rails
+  better_errors
+  binding_of_caller
   capistrano
   capybara
   cucumber-rails!
