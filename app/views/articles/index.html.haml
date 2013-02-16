@@ -6,8 +6,9 @@
     %th Body
 
   - @articles.each do |article|
-    %tr= article.title
-    %tr= article.body
+    %tr
+      %td= article.title
+      %td= article.body
 
 
 %br
