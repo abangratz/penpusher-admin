@@ -4,7 +4,10 @@ class Article
 
   attr_accessor :title, :body
 
-  def initialize(params)
+  attr_reader :errors
+
+  def initialize(params={})
+    @errors = ActiveModel::Errors.new(self)
     self.title = params[:title]
     self.body = params[:body]
   end
