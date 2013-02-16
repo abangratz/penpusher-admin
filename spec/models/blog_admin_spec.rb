@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe BlogAdmin do
   subject { BlogAdmin.new }
-  it "has many articles" do
-    article = OpenStruct.new(title: "Title", body: "Body")
-    subject.articles << article
-    subject.articles.first.should eq(article)
-  end
+  let(:article) { subject.create_article('title', 'body')  }
   it "creates an article from a title and body" do
-    subject.create_article('title', 'body')
+    article.should eq(OpenStruct.new(title: 'title', body: 'body'))
   end
-  it "returns the articles as entries"
+
+  it "adds the newly created article to entries" do
+    subject.entries.should include(article)
+  end
+
 end
