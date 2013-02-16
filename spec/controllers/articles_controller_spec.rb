@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ArticlesController do
   context "GET /index" do
     let(:articles) { [] }
-    let(:blog) { OpenStruct.new(articles: articles) }
+    let(:blog) { OpenStruct.new(entries: articles) }
     before(:each) do
       controller.blog = blog
     end

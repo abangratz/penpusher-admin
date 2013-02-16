@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   attr_writer :blog
 
   def index
-    @articles = blog.articles
+    @articles = blog.entries
   end
 
   def blog
