@@ -1,17 +1,15 @@
 class BlogAdmin
 
+  attr_reader :entries
+
   def initialize
-    @articles = []
+    @entries = []
   end
 
   def create_article(title, body)
     article = OpenStruct.new(title: title, body: body)
-    @articles << article
+    @entries << article
     article
-  end
-
-  def entries
-    @articles
   end
 
 end
