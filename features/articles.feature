@@ -8,7 +8,7 @@ Feature: Administrating the blog
 		When I visit the "/articles/new" page
 		And I fill in "Title" with "The Title"
 		And I fill in "Body" with "Body Blah"
-		And I click "Create article"
+		And I click "Save"
 		Then I should be on the "/articles" page
 		And I should see "The Title"
 		And I should see "Body Blah"
