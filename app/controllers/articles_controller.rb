@@ -1,8 +1,4 @@
 class ArticlesController < ApplicationController
-  class Article < SimpleDelegator
-    extend ActiveModel::Naming
-  end
-
   attr_writer :blog
 
   def index
@@ -10,7 +6,11 @@ class ArticlesController < ApplicationController
   end
 
   def blog
-    @blog ||= Blog.new
+    @blog ||= BlogAdmin.new
+  end
+
+  def new
+    @article = blog.create_article('test', 'testbody')
   end
 
 end

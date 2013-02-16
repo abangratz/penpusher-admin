@@ -4,15 +4,15 @@ describe ArticlesController do
   context "GET /index" do
     let(:articles) { [] }
     let(:blog) { OpenStruct.new(articles: articles) }
+    before(:each) do
+      controller.blog = blog
+    end
     it "succeeds" do
       get :index
       response.should be_success
     end
 
     context "retrieving articles" do
-      before(:each) do
-        controller.blog = blog
-      end
       it "retrieves the articles from a blog instance" do
         get :index
       end
@@ -25,10 +25,30 @@ describe ArticlesController do
     end
 
   end
+  
+  context " GET /new" do
+    let(:article) { mock_model(Article, title: 'test', body: 'testbody') }
+    let(:blog) { mock(BlogAdmin)}
+    before(:each) do
+      BlogAdmin.should_receive(:new).and_return(blog)
+      blog.should_receive(:create_article).with('test', 'testbody')
+        .and_return(article)
+    end
+    it "succeeds" do
+      get :new
+      response.should be_success
+    end
+
+    it "sets a newly created article as @article" do
+      get :new
+      assigns(:article).should eq(article)
+    end
+
+  end
 
   context "#blog" do
     it "returns the blog instance" do
-      controller.blog.should be_a(Blog)
+      controller.blog.should be_a(BlogAdmin)
     end
 
     it "caches the blog instance" do
