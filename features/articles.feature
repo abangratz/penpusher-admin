@@ -15,10 +15,13 @@ Feature: Administrating the blog
 		And I should see "The article has been successfully saved."
 
 	Scenario: Listing Articles
+		When I visit the "/articles" page
+		Then I should not see "Test"
+		And I should not see "Not a test"
 		Given I have a list of articles with the following content:
 			|title		| body									|
 			|Test		| First!!11!!!eleventy					|
-			|Not a Test	| Second. You lose.		|
+			|Not a Test	| Second. You lose.						|
 		When I visit the "/articles" page
 		Then I should see "Test"
 		And I should see "First!!11!!!eleventy"
