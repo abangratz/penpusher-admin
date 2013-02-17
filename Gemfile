@@ -23,6 +23,7 @@ group :development, :test do
   gem 'autotest-rails'
   gem 'autotest'
   gem 'test_notifier'
+  gem 'simplecov'
 end
 
 group :development do
