@@ -29,4 +29,3 @@ end
 Spork.each_run do
   ActiveSupport::Dependencies.clear
 end if Spork.using_spork?
-
