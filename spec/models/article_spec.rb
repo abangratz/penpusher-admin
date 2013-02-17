@@ -20,4 +20,23 @@ describe Article do
       subject.errors.should be_a(ActiveModel::Errors)
     end
   end
+  context "#persisted?" do
+    subject { Article.new }
+    it "is never persisted" do
+      subject.should_not be_persisted
+    end
+  end
+
+  context "including/extending" do
+    it "includes ActiveModel::Conversion" do
+      Article.ancestors.include? ActiveModel::Conversion
+    end
+  end
+
+  context ".model_name" do
+    subject { Article }
+    it "returns a genuine ActiveModel::Name" do
+      subject.model_name.should be_a(ActiveModel::Name)
+    end
+  end
 end
