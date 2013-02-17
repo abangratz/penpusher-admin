@@ -33,6 +33,20 @@ describe Article do
     end
   end
 
+  context "validating" do
+    subject { Article.new }
+    it "checks the presence of the body" do
+      subject.title = 'something'
+      subject.body = nil
+      subject.should_not be_valid
+    end
+    it "checks the presence of the title" do
+      subject.title = nil
+      subject.body = 'something'
+      subject.should_not be_valid
+    end
+  end
+
   context ".model_name" do
     subject { Article }
     it "returns a genuine ActiveModel::Name" do
