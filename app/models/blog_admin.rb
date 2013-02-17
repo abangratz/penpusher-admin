@@ -1,5 +1,5 @@
 class BlogAdmin
-
+  include Singleton
   attr_reader :entries
 
   attr_accessor :article_creator_method
@@ -15,5 +15,10 @@ class BlogAdmin
     @entries << article
     article
   end
+
+  def new_article
+    self.article_creator_method.(title: nil, body: nil)
+  end
+
 
 end
