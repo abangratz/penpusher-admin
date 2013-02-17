@@ -47,10 +47,18 @@ describe ArticlesController do
   end
 
   context "POST /articles" do
+    let(:article) { mock_model(Article, title: nil, body: nil) }
     it "creates a new article via blog" do
-      blog.should_receive(:create_article).with("the title", "the body").and_return(true)
+      article.stub!(:valid? => true)
+      blog.should_receive(:create_article).with("the title", "the body").and_return(article)
       post :create, {article: {title: "the title", body: "the body"}}
       response.should redirect_to "/articles"
+    end
+    it "renders new if the article is not valid" do
+      article.stub!(:valid? => false)
+      blog.should_receive(:create_article).with("the title", "the body").and_return(article)
+      post :create, {article: {title: "the title", body: "the body"}}
+      response.should render_template('articles/new')
     end
   end
 
