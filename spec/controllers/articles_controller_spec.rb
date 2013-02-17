@@ -1,9 +1,12 @@
 require 'spec_helper'
 
 describe ArticlesController do
+  let(:articles) { [] }
+  let(:blog) { OpenStruct.new(entries: articles) }
+  before(:each) do
+    Rails.application.config.blog_admin = blog
+  end
   context "GET /index" do
-    let(:articles) { [] }
-    let(:blog) { OpenStruct.new(entries: articles) }
     before(:each) do
       controller.blog = blog
     end
@@ -26,12 +29,10 @@ describe ArticlesController do
 
   end
   
-  context " GET /new" do
-    let(:article) { mock_model(Article, title: 'test', body: 'testbody') }
-    let(:blog) { mock(BlogAdmin)}
+  context "GET /new" do
+    let(:article) { mock_model(Article, title: nil, body: nil) }
     before(:each) do
-      BlogAdmin.should_receive(:new).and_return(blog)
-      blog.should_receive(:create_article).with('test', 'testbody')
+      blog.should_receive(:new_article)
         .and_return(article)
     end
     it "succeeds" do
@@ -43,20 +44,20 @@ describe ArticlesController do
       get :new
       assigns(:article).should eq(article)
     end
+  end
 
+  context "POST /articles" do
+    it "creates a new article via blog" do
+      blog.should_receive(:create_article).with("the title", "the body").and_return(true)
+      post :create, {article: {title: "the title", body: "the body"}}
+      response.should redirect_to "/articles"
+    end
   end
 
   context "#blog" do
     it "returns the blog instance" do
-      controller.blog.should be_a(BlogAdmin)
+      controller.blog.should eq(blog)
     end
-
-    it "caches the blog instance" do
-      the_blog = controller.blog
-      the_blog.should_not be_nil
-      controller.blog.should == the_blog
-    end
-
   end
 
 end

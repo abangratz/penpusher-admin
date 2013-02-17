@@ -6,11 +6,16 @@ class ArticlesController < ApplicationController
   end
 
   def blog
-    @blog ||= BlogAdmin.new
+    Rails.application.config.blog_admin
   end
 
   def new
-    @article = blog.create_article('test', 'testbody')
+    @article = blog.new_article
+  end
+
+  def create
+    blog.create_article(params[:article][:title], params[:article][:body])
+    redirect_to articles_path
   end
 
 end
