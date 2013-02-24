@@ -14,6 +14,18 @@ Feature: Administrating the blog
 		And I should see "Body Blah"
 		And I should see "The article has been successfully saved."
 
+	Scenario: Viewing an Article
+		Given there are no entries in the blog
+		And I have a list of articles with the following content:
+			|title				|body			|
+			|the title			|the body		|
+			|the other title	|the other body	|
+		When I visit the "/articles/the-title" page
+		Then I should see "the title"
+		And I should see "the body"
+		And I should not see "the other title"
+		And I should not see "the other body"
+
 	Scenario: Validation: Leave out Title
 		Given there are no entries in the blog
 		When I visit the "/articles/new" page
