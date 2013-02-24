@@ -32,4 +32,10 @@ class Article
     ActiveModel::Name.new(self)
   end
 
+  def self.create(*args)
+    a = Article.new(*args)
+    a.persisted = a.valid?
+    a
+  end
+
 end

@@ -77,4 +77,19 @@ describe Article do
       subject.model_name.should be_a(ActiveModel::Name)
     end
   end
+  
+  context ".create" do
+    subject { Article }
+    it "returns a new article" do
+      subject.create.should be_a(Article)
+    end
+    it "sets persisted to true if the article is valid" do
+      result = subject.create(title: "title", body: "body")
+      result.should be_persisted
+    end
+    it "sets persisted to false if the article is invalid" do
+      result = subject.create(title: "title", body: nil)
+      result.should_not be_persisted
+    end
+  end
 end
