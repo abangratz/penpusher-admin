@@ -4,7 +4,7 @@ class Article
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
-  attr_accessor :title, :body
+  attr_accessor :title, :body, :persisted
 
   attr_reader :errors
 
@@ -16,8 +16,16 @@ class Article
     self.body = params[:body]
   end
 
+  def slug
+    title && title.parameterize
+  end
+
+  def id 
+    slug
+  end
+
   def persisted?
-    false
+    self.persisted
   end
 
   def self.model_name

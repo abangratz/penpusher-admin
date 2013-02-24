@@ -22,8 +22,10 @@ describe Article do
   end
   context "#persisted?" do
     subject { Article.new }
-    it "is never persisted" do
+    it "can be set" do
       subject.should_not be_persisted
+      subject.persisted = true
+      subject.should be_persisted
     end
   end
 
@@ -44,6 +46,28 @@ describe Article do
       subject.title = nil
       subject.body = 'something'
       subject.should_not be_valid
+    end
+  end
+
+  context "slug" do
+    subject { Article.new }
+    it "returns a slug built from the title" do
+      subject.title = 'the title'
+      subject.slug.should eq('the-title')
+    end
+    it "returns nil if the title is empty" do
+      subject.title = nil
+      subject.slug.should be_nil
+    end
+    it "returns the slug for to_param if persisted" do
+      subject.title = 'another title'
+      subject.persisted = true
+      subject.to_param.should eq(subject.slug)
+    end
+    it "returns nil for to_param if not persisted" do
+      subject.title = 'another title'
+      subject.persisted = false
+      subject.to_param.should be_nil
     end
   end
 
