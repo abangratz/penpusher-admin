@@ -6,7 +6,7 @@
     %th Body
 
   - @articles.each do |article|
-    %tr
+    %tr{class: "#{cycle('odd', 'even')}"}
       %td= article.title
       %td= article.body
 
