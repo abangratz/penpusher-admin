@@ -61,6 +61,37 @@ describe ArticlesController do
     end
   end
 
+  context "GET /edit" do
+    let(:article) { mock_model(Article, title: nil, body: nil) }
+    before(:each) do
+      blog.should_receive(:retrieve_article).with('title').and_return(article)
+    end
+    it "succeeds" do
+      get :edit, id: 'title'
+      response.should be_success
+    end
+    it "sets a retrieved article" do
+      get :edit, id: 'title'
+      assigns(:article).should eq(article)
+    end
+  end
+
+  context "PUT /articles" do
+    let(:article) { mock_model(Article, title: nil, body: nil) }
+    it "updates an article via blog" do
+      article.stub!(:valid? => true)
+      blog.should_receive(:update_article).with("the-title", "the title", "the body").and_return(article)
+      put :update, {article: {title: "the title", body: "the body"}, id: "the-title"}
+      response.should redirect_to "/articles"
+    end
+    it "renders edit if the article is not valid" do
+      article.stub!(:valid? => false)
+      blog.should_receive(:update_article).with("the-title", "the title", "the body").and_return(article)
+      put :update, {article: {title: "the title", body: "the body"}, id: "the-title"}
+      response.should render_template('articles/edit')
+    end
+  end
+
   context "POST /articles" do
     let(:article) { mock_model(Article, title: nil, body: nil) }
     it "creates a new article via blog" do

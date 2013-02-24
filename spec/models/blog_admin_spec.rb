@@ -50,4 +50,13 @@ describe BlogAdmin do
     end
   end
 
+  context "#update_article" do
+    let(:article) { OpenStruct.new(title: 'the title', body: "body", slug: 'the-title') }
+    it "returns the matching article from entries" do
+      BlogAdmin.instance.entries = [article]
+      updated = subject.update_article("the-title", "title", "new_body")
+      updated.body.should eq("new_body")
+    end
+  end
+
 end

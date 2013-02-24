@@ -25,6 +25,12 @@ class BlogAdmin
   def new_article
     self.article_creator_method.(title: nil, body: nil)
   end
-
+  
+  def update_article(slug, title, body)
+    article = retrieve_article(slug)
+    article.title = title
+    article.body = body
+    article
+  end
 
 end

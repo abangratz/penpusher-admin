@@ -9,6 +9,10 @@ class ArticlesController < ApplicationController
     @article = blog.retrieve_article(params[:id])
   end
 
+  def edit
+    @article = blog.retrieve_article(params[:id])
+  end
+
   def blog
     Rails.application.config.blog_admin
   end
@@ -25,5 +29,15 @@ class ArticlesController < ApplicationController
       render action: :new, notice: "Article is not valid"
     end
   end
+
+  def update
+    @article = blog.update_article(params[:id], params[:article][:title], params[:article][:body])
+    if @article.valid?
+      redirect_to articles_path, notice: "The article has been successfully saved."
+     else
+       render action: :edit, notice: "Article is not valid"
+    end
+  end
+
 
 end
