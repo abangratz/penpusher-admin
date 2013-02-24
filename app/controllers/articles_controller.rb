@@ -5,6 +5,10 @@ class ArticlesController < ApplicationController
     @articles = blog.entries
   end
 
+  def show
+    @article = blog.retrieve_article(params[:id])
+  end
+
   def blog
     Rails.application.config.blog_admin
   end

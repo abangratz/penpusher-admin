@@ -46,6 +46,21 @@ describe ArticlesController do
     end
   end
 
+  context "GET /show" do
+    let(:article) { mock_model(Article, title: 'title', body: 'body') }
+    before(:each) do
+      blog.should_receive(:retrieve_article).with('title').and_return(article)
+    end
+    it "succeeds" do
+      get :show, id: 'title'
+      response.should be_success
+    end
+    it "sets a retrieved article" do
+      get :show, id: 'title'
+      assigns(:article).should eq(article)
+    end
+  end
+
   context "POST /articles" do
     let(:article) { mock_model(Article, title: nil, body: nil) }
     it "creates a new article via blog" do
