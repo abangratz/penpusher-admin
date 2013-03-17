@@ -1,5 +1,8 @@
-%p#notice= notice
+%h1 
+  Article:
+  = @article.title
 
+.body= @article.body
 
 = link_to 'Edit', edit_article_path(@article)
 \|

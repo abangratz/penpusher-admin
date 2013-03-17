@@ -33,12 +33,29 @@ describe BlogAdmin do
     end
   end
 
+  context "#retreive_article" do
+    let(:article) { OpenStruct.new(title: 'title', slug: 'title') }
+    it "returns the matching article from entries" do
+      BlogAdmin.instance.entries = [article]
+      subject.retrieve_article('title').should == article
+    end
+  end
+
   context "#new_article" do
     it "creates a new article without title and body" do
       new_article = subject.new_article
       new_article.should eq(article)
       article.body.should be_nil
       article.title.should be_nil
+    end
+  end
+
+  context "#update_article" do
+    let(:article) { OpenStruct.new(title: 'the title', body: "body", slug: 'the-title') }
+    it "returns the matching article from entries" do
+      BlogAdmin.instance.entries = [article]
+      updated = subject.update_article("the-title", "title", "new_body")
+      updated.body.should eq("new_body")
     end
   end
 

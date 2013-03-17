@@ -4,7 +4,7 @@ class Article
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
-  attr_accessor :title, :body, :html_body, :body_creator_method
+  attr_accessor :title, :body, :persisted, :html_body, :body_creator_method
 
   attr_reader :errors
 
@@ -16,8 +16,16 @@ class Article
     self.body = params[:body]
   end
 
+  def slug
+    title && title.parameterize
+  end
+
+  def id 
+    slug
+  end
+
   def persisted?
-    false
+    self.persisted
   end
   
   def body=(value, body_creator_method=Kramdown::Document.method(:new))
@@ -28,6 +36,12 @@ class Article
 
   def self.model_name
     ActiveModel::Name.new(self)
+  end
+
+  def self.create(*args)
+    a = Article.new(*args)
+    a.persisted = a.valid?
+    a
   end
 
 end
