@@ -14,7 +14,7 @@ describe BlogAdmin do
   context "#create_article" do
     before(:each) do
       BlogAdmin.instance.article_creator_method = article_creator_method
-      article.stub!(:valid? => true)
+      article.stub!(:persist => true)
     end
     it "creates an article from a title and body" do
       subject.create_article('title', 'body')
@@ -27,7 +27,7 @@ describe BlogAdmin do
     end
 
     it "does not add an invalid article to entries" do
-      article.stub!(:valid? => false)
+      article.stub!(:persist => false)
       subject.create_article('title', nil)
       subject.entries.should_not include(article)
     end

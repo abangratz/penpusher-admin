@@ -12,7 +12,7 @@ class BlogAdmin
 
   def create_article(title, body)
     article = self.article_creator_method.(title: title, body: body)
-    if article.valid?
+    if article.persist
       @entries << article 
     end
     article
