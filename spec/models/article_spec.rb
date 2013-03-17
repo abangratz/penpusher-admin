@@ -28,6 +28,31 @@ describe Article do
       subject.should be_persisted
     end
   end
+  
+  context "formatting" do
+    subject { Article.new }
+    it "converts markdown syntax in the body" do
+      subject.body =<<-EOS
+#H1
+
+Paragraph
+
+##H2
+
+Another Paragraph
+      EOS
+      html =<<-EOS
+<h1 id="h1">H1</h1>
+
+<p>Paragraph</p>
+
+<h2 id="h2">H2</h2>
+
+<p>Another Paragraph</p>
+      EOS
+      subject.html_body.should eq(html)
+    end
+  end
 
   context "including/extending" do
     it "includes ActiveModel::Conversion" do

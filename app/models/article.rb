@@ -4,7 +4,7 @@ class Article
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
-  attr_accessor :title, :body, :persisted
+  attr_accessor :title, :body, :persisted, :html_body
 
   attr_reader :errors
 
@@ -26,6 +26,11 @@ class Article
 
   def persisted?
     self.persisted
+  end
+  
+  def body=(value)
+    self.html_body = Kramdown::Document.new(value).to_html if value
+    @body = value
   end
 
   def self.model_name
