@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
 gem 'haml-rails'
+gem 'kramdown'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -20,8 +21,8 @@ group :development, :test do
   gem 'capybara'
   gem 'pry-rails'
   gem 'spork'
-  gem 'autotest-rails'
-  gem 'autotest'
+  # gem 'autotest-rails'
+  # gem 'autotest'
   gem 'test_notifier'
   gem 'simplecov'
 end
