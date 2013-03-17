@@ -4,7 +4,7 @@ class Article
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
-  attr_accessor :title, :body, :persisted, :html_body
+  attr_accessor :title, :body, :persisted, :html_body, :body_creator_method
 
   attr_reader :errors
 
@@ -28,8 +28,9 @@ class Article
     self.persisted
   end
   
-  def body=(value)
-    self.html_body = Kramdown::Document.new(value).to_html if value
+  def body=(value, body_creator_method=Kramdown::Document.method(:new))
+    self.body_creator_method = body_creator_method
+    self.html_body = body_creator_method.(value).to_html if value
     @body = value
   end
 

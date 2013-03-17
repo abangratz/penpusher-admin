@@ -15,4 +15,7 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 .rvmrc
+.swp
+*~
+.*~
 .c9revisions/
