@@ -39,9 +39,11 @@ class Article
   end
 
   def self.create(*args)
-    a = Article.new(*args)
-    a.persisted = a.valid?
-    a
+    Article.new(*args)
+  end
+
+  def persist
+    self.persisted = self.valid?
   end
 
 end

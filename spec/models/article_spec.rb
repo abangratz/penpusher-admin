@@ -108,13 +108,22 @@ Another Paragraph
     it "returns a new article" do
       subject.create.should be_a(Article)
     end
+    it "does not set persisted" do
+      subject.create(title: "title", body: 'not nil').persisted?.should be_nil
+      # Explicit check for nil: refactoring changed api
+    end
+  end
+  context "#persist" do
+    subject { Article }
     it "sets persisted to true if the article is valid" do
-      result = subject.create(title: "title", body: "body")
+      result = subject.create(title: "title", body: 'not nil')
+      result.persist
       result.should be_persisted
     end
     it "sets persisted to false if the article is invalid" do
       result = subject.create(title: "title", body: nil)
-      result.should_not be_persisted
+      result.persist
+      result.persisted?.should be_false
     end
   end
 end
