@@ -57,6 +57,19 @@ Feature: Administrating the blog
 		And I should see "Body can't be blank"
 		When I visit the "/articles" page
 		Then I should not see "The Title"
+	
+	Scenario: Validation: duplicate title
+		Given there are no entries in the blog
+		And I have a list of articles with the following content:
+			|title				|body			|
+			|Title				|Body			|
+		When I visit the "/articles/new" page
+		And I fill in "Title" with "The Title"
+		And I fill in "Body" with "The Body"
+		And I click "Save"
+		Then I should be on the "/articles" page
+		And I should see "Title must be unique"
+		And I should not see "The article has been successfully saved."
 
 	Scenario: Listing Articles
 		When I visit the "/articles" page
