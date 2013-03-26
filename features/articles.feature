@@ -62,7 +62,7 @@ Feature: Administrating the blog
 		Given there are no entries in the blog
 		And I have a list of articles with the following content:
 			|title				|body			|
-			|Title				|Body			|
+			|The Title			|Body			|
 		When I visit the "/articles/new" page
 		And I fill in "Title" with "The Title"
 		And I fill in "Body" with "The Body"

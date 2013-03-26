@@ -10,6 +10,11 @@ class Article
 
   validates_presence_of :title, :body
 
+  validates_each :title do |record, attr, value|
+    record.errors.add attr, 'must be unique' if BlogAdmin.instance.retrieve_article(record.slug)
+    #TODO: More indirection, less coupling
+  end
+
   def initialize(params={})
     @errors = ActiveModel::Errors.new(self)
     self.title = params[:title]

@@ -12,6 +12,9 @@ class BlogAdmin
 
   def create_article(title, body)
     article = self.article_creator_method.(title: title, body: body)
+    if retrieve_article(article.slug)
+      article.errors.add("title", "must be unique")
+    end
     if article.persist
       @entries << article 
     end
