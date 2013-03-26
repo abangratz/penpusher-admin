@@ -2,7 +2,7 @@
   Article:
   = @article.title
 
-.body= @article.body
+.body= raw @article.html_body
 
 = link_to 'Edit', edit_article_path(@article)
 \|
